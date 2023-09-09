@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comptes</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+</head>
+<body>
+    <h1>Tableau de bord bancaire<br>courant simplifié par mission</h1>
+    
+    <input type="file" id="fileInput" accept=".ods">
+    <button onclick="readFile()">Lire le fichier ODS</button>
+    
+    <hr>
+
+    <h2>Des besoins</h2>
+    <div id="cellContent1"></div>
+    <div id="cellContent2"></div>
+
+    
+    <script>
+        function readFile() {
+            const fileInput = document.getElementById('fileInput');
+            const cellContentDiv1 = document.getElementById('cellContent1');
+            const cellContentDiv2 = document.getElementById('cellContent2');
+            
+            // Vérifiez si un fichier a été sélectionné
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    const data = new Uint8Array(e.target.result);
+                    
+                    // Lisez le fichier ODS en utilisant SheetJS
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    
+                    // Accédez à la première feuille (board) et à la cellule D7
+                    const firstSheet = workbook.Sheets['Board'];
+                    const cellD7 = firstSheet['D7'];
+                    const cellD8 = firstSheet['D8'];
+
+                    
+                    // Affichez le contenu de la cellule D7 dans le div
+                    cellContentDiv1.textContent = cellD7 ? 'Loyer : ' + cellD7.v + '€' : 'Cellule vide';
+                    cellContentDiv2.textContent = cellD8 ? 'Factures : ' + cellD8.v + '€' : 'Cellule vide';
+
+                };
+                
+                reader.readAsArrayBuffer(file);
+            } else {
+                alert('Sélectionnez un fichier ODS à lire.');
+            }
+        }
+    </script>
+</body>
+</html>
