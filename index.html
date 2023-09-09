@@ -1,37 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sélecteur de fichiers Android</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vorlod-exe</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: move 15s linear;
+            animation-iteration-count: 1;
+        }
+
+        .beige { background-color: #d2b48c; }
+        .red { background-color: #8b0000; }
+        .gray { background-color: #808080; }
+
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(100vw, 100vh);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Sélecteur de fichiers Android</h1>
-    
-    <form id="fileForm" style="display: none;">
-        <input type="file" id="fileInput">
-    </form>
-    
-    <button id="selectFileButton">Sélectionner un fichier</button>
-    
-    <p id="selectedFileName"></p>
+    <div class="container">
+        <h1 id="randomLatinWord"></h1>
+        <p><i>Visita Interiorem Terrae Rectificando Invenies Occultum Lapidem</i></p>
+    </div>
+    <div class="particles">
+        <div class="particle beige" style="width: 10px; height: 10px; top: 30%; left: 20%;"></div>
+        <div class="particle beige" style="width: 8px; height: 8px; top: 60%; left: 70%;"></div>
+        <div class="particle red" style="width: 12px; height: 12px; top: 40%; left: 40%;"></div>
+        <div class="particle red" style="width: 6px; height: 6px; top: 80%; left: 50%;"></div>
+        <div class="particle gray" style="width: 8px; height: 8px; top: 10%; left: 90%;"></div>
+        <div class="particle gray" style="width: 10px; height: 10px; top: 70%; left: 10%;"></div>
+        <div class="particle beige" style="width: 10px; height: 10px; top: 20%; left: 50%;"></div>
+        <div class="particle beige" style="width: 8px; height: 8px; top: 80%; left: 30%;"></div>
+        <div class="particle red" style="width: 12px; height: 12px; top: 70%; left: 20%;"></div>
+        <div class="particle red" style="width: 6px; height: 6px; top: 10%; left: 60%;"></div>
+        <div class="particle gray" style="width: 8px; height: 8px; top: 50%; left: 70%;"></div>
+        <div class="particle gray" style="width: 10px; height: 10px; top: 40%; left: 90%;"></div>
+    </div>
 
     <script>
-        const fileForm = document.getElementById('fileForm');
-        const fileInput = document.getElementById('fileInput');
-        const selectFileButton = document.getElementById('selectFileButton');
-        const selectedFileName = document.getElementById('selectedFileName');
-
-        selectFileButton.addEventListener('click', function() {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', function() {
-            const selectedFile = fileInput.files[0];
-            if (selectedFile) {
-                selectedFileName.textContent = 'Fichier sélectionné : ' + selectedFile.name;
-            } else {
-                selectedFileName.textContent = 'Aucun fichier sélectionné';
-            }
-        });
+        const latinWords = ["glauci","migrantisque","adhortarenturque","appellavisset","arguerent","auroramque","caderes","celebraveratque","collabis","compellarent","constabisque","constaveritque","corripiamque","cremareturque","crispantaque","decertabam","declinamus","doctaque","effatus","emotique","exceperimque","exercitibus","exordium","exploravissimus","exposciebatque","extremum","fastosque","fias","fiderantque","fremantque","frondenta","frustrarisque","fundabiturque","horrebo","hostibus","imploremque","incumbimus","inferatur","inhiantesque","inuademusque","inuitisque","invisisse","iubamus","iubavissentque","iuvavisse","laboratumque","labores","laetitiaeque","latera","montum","moravissetis","nolletis","olivam","pendeasque","pertinerent","prauisque","referentaque","regeris","regeruntque","relinquissesque","restinguendumque","saltibusque","sciri","siletis","sonas","sortitus","subacti","sulce","taedetque","tenuitisque","teritque","ueridicaque","uersabimus","usurperis","vocabatis","vocatosque","volvarisque"];
+        const randomLatinWord = document.getElementById('randomLatinWord');
+        const randomIndex = Math.floor(Math.random() * latinWords.length);
+        randomLatinWord.textContent = latinWords[randomIndex];
     </script>
 </body>
 </html>
