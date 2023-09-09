@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sélecteur de fichiers Android</title>
+</head>
+<body>
+    <h1>Sélecteur de fichiers Android</h1>
+    
+    <form id="fileForm" style="display: none;">
+        <input type="file" id="fileInput">
+    </form>
+    
+    <button id="selectFileButton">Sélectionner un fichier</button>
+    
+    <p id="selectedFileName"></p>
+
+    <script>
+        const fileForm = document.getElementById('fileForm');
+        const fileInput = document.getElementById('fileInput');
+        const selectFileButton = document.getElementById('selectFileButton');
+        const selectedFileName = document.getElementById('selectedFileName');
+
+        selectFileButton.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function() {
+            const selectedFile = fileInput.files[0];
+            if (selectedFile) {
+                selectedFileName.textContent = 'Fichier sélectionné : ' + selectedFile.name;
+            } else {
+                selectedFileName.textContent = 'Aucun fichier sélectionné';
+            }
+        });
+    </script>
+</body>
+</html>
