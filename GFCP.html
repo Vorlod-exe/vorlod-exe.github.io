@@ -3,8 +3,34 @@
 <head>
     <title>Comptes</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <style>
-        /* Votre CSS reste inchangé */
+    <style type="text/css">
+        .tftable {
+            font-size: 3vw;
+            color: #333333;
+            width: 100%;
+            border-width: 1px;
+            border-color: #729ea5;
+            border-collapse: collapse;
+        }
+
+        .tftable th {
+            background-color: #acc8cc;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #729ea5;
+            text-align: left;
+        }
+
+        .tftable tr {
+            background-color: #d4e3e5;
+        }
+
+        .tftable td {            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #729ea5;
+        }
     </style>
 </head>
 <body>
@@ -15,43 +41,34 @@
     
     <hr>
 
-    <style type="text/css">
-    .tftable {font-size:12px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
-    .tftable th {font-size:12px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
-    .tftable tr {background-color:#d4e3e5;}
-    .tftable td {font-size:12px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
-    </style>
-
-    <table class="tftable" border="1">
-    <tr><th>Encourt</th><th>Ecourt comptable : <div class="cellContent" id="cellContent0"></div></th><th>Ecourt bancaire : <div class="cellContent" id="cellContent0"></div></th></tr>
-    <tr style="background-color: #ffffff; font-style: italic;"><td>BESOINS</td><td></td><td><div class="cellContent" id="cellContent0"></div></td></tr>
-    <tr><td>Loyer</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Factures</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Transports</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Alimentation</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr style="background-color: #ffffff; font-style: italic;"><td>LOISIR</td><td></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Sorties</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Culture</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Non alimentaire</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr style="background-color: #ffffff; font-style: italic;"><td>ÉPARGNE</td><td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Sécurité</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
-    <tr><td>Investissement</td><td><div class="cellContent" id="cellContent0"></td><td><div class="cellContent" id="cellContent0"></td></tr>
+    <table class="tftable">
+    <tr><th>Encourt</th><th>Ecourt comptable : <div class="cellContent" id="cellContent0"></div></th><th>Ecourt bancaire : <div class="cellContent" id="cellContent01"></div></th></tr>
+    <tr style="background-color: #ffffff; font-style: italic;"><td>BESOINS</td><td></td><td><div class="cellContent" id="cellContent1"></div></td></tr>
+    <tr><td>Loyer</td><td><div class="cellContent" id="cellContent11"></div></td><td><div class="cellContent" id="cellContent12"></div></td></tr>
+    <tr><td>Factures</td><td><div class="cellContent" id="cellContent13"></div></td><td><div class="cellContent" id="cellContent14"></div></td></tr>
+    <tr><td>Transports</td><td><div class="cellContent" id="cellContent15"></div></td><td><div class="cellContent" id="cellContent16"></div></td></tr>
+    <tr><td>Alimentation</td><td><div class="cellContent" id="cellContent17"></div></td><td><div class="cellContent" id="cellContent18"></div></td></tr>
+    <tr style="background-color: #ffffff; font-style: italic;"><td>LOISIR</td><td></td><td><div class="cellContent" id="cellContent19"></div></td></tr>
+    <tr><td>Sorties</td><td><div class="cellContent" id="cellContent110"></div></td><td><div class="cellContent" id="cellContent111"></div></td></tr>
+    <tr><td>Culture</td><td><div class="cellContent" id="cellContent112"></div></td><td><div class="cellContent" id="cellContent113"></div></td></tr>
+    <tr><td>Non alimentaire</td><td><div class="cellContent" id="cellContent114"></div></td><td><div class="cellContent" id="cellContent115"></div></td></tr>
+    <tr style="background-color: #ffffff; font-style: italic;"><td>ÉPARGNE</td><td></td><td><div class="cellContent" id="cellContent116"></div></td></tr>
+    <tr><td>Sécurité</td><td><div class="cellContent" id="cellContent117"></div></td><td><div class="cellContent" id="cellContent118"></div></td></tr>
+    <tr><td>Investissement</td><td><div class="cellContent" id="cellContent119"></div></td><td><div class="cellContent" id="cellContent120"></div></td></tr>
     <tr style="background-color: #ffffff; font-style: italic;"><td>RELIQUATS</td></tr>
-    <tr><td>Transports</td><td><div class="cellContent" id="cellContent0"></td><td></tr>
-    <tr><td>Sortie</td><td><div class="cellContent" id="cellContent0"></td><td></tr>
-    <tr><td>Culture</td><td><div class="cellContent" id="cellContent0"></td><td></tr>
-    <tr><td>Non alimentaire</td><td><div class="cellContent" id="cellContent0"></td><td></tr>
-    <tr><td>PEA</td><td><div class="cellContent" id="cellContent0"></td><td></tr>
+    <tr><td>Transports</td><td><div class="cellContent" id="cellContent121"></div></td><td></td></tr>
+    <tr><td>Sortie</td><td><div class="cellContent" id="cellContent122"></div></td><td></td></tr>
+    <tr><td>Culture</td><td><div class="cellContent" id="cellContent123"></div></td><td></td></tr>
+    <tr><td>Non alimentaire</td><td><div class="cellContent" id="cellContent124"></div></td><td></td></tr>
+    <tr><td>PEA</td><td><div class="cellContent" id="cellContent125"></div></td><td></td></tr>
     </table>
     
     <script>
         function readFile() {
             const fileInput = document.getElementById('fileInput');
             
-            // Obtenez tous les éléments avec la classe "cellContent"
             const cellContentDivs = document.querySelectorAll('.cellContent');
 
-            // Vérifiez si un fichier a été sélectionné
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];
                 const reader = new FileReader();
@@ -59,13 +76,10 @@
                 reader.onload = function (e) {
                     const data = new Uint8Array(e.target.result);
                     
-                    // Lisez le fichier ODS en utilisant SheetJS
                     const workbook = XLSX.read(data, { type: 'array' });
                     
-                    // Accédez à la première feuille (board) et aux cellules spécifiées
                     const firstSheet = workbook.Sheets['Board'];
                     
-                    // Utilisez une boucle pour mettre à jour les données de chaque élément
                     cellContentDivs.forEach((div, index) => {
                         const cell = firstSheet[XLSX.utils.encode_cell({ r: index, c: 33 })];
                         div.textContent = cell ? cell.v + " €" : 'Cellule vide';
@@ -80,4 +94,3 @@
     </script>
 </body>
 </html>
-
