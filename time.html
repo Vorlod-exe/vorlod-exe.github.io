@@ -41,13 +41,28 @@
       return resultat;
     }
 
-    // Mettre à jour la date cible lors du clic sur le bouton
+    // Mettre à jour la date cible et l'URL lors du chargement de la page
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const dateCibleParam = urlParams.get('date');
+      if (dateCibleParam) {
+        document.getElementById('dateCibleInput').value = dateCibleParam;
+        updateDateCible(); // Met à jour également le résultat
+      }
+    }
+
+    // Mettre à jour la date cible et l'URL lors du clic sur le bouton
     function updateDateCible() {
       const dateCibleInput = document.getElementById('dateCibleInput');
       const nouvelleDateCible = dateCibleInput.value;
       const duree = calculerDifferenceDate(nouvelleDateCible);
       const resultat = formaterDuree(duree);
       document.getElementById('resultat').innerHTML = `Temps restant jusqu'à la date cible : ${resultat}`;
+
+      // Mettre à jour l'URL avec la nouvelle date cible
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('date', nouvelleDateCible);
+      window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`);
     }
   </script>
 </body>
