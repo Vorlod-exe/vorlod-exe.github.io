@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcul de durée</title>
+</head>
+<body>
+  <h1>Calcul de durée jusqu'à la date cible</h1>
+
+  <label for="dateCibleInput">Date cible :</label>
+  <input type="datetime-local" id="dateCibleInput">
+  <button onclick="updateDateCible()">Mettre à jour</button>
+
+  <div id="resultat"></div>
+  
+  <script>
+    // Fonction pour calculer la différence de temps entre deux dates
+    function calculerDifferenceDate(dateCible) {
+      const maintenant = new Date();
+      const cible = new Date(dateCible);
+
+      const difference = cible - maintenant;
+      const jours = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const heures = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+      return { jours, heures, minutes };
+    }
+
+    // Fonction pour formater la durée de façon lisible
+    function formaterDuree(duree) {
+      let resultat = '';
+      if (duree.jours > 0) {
+        resultat += `${duree.jours} jour${duree.jours > 1 ? 's' : ''}, `;
+      }
+      if (duree.heures > 0) {
+        resultat += `${duree.heures} heure${duree.heures > 1 ? 's' : ''}, `;
+      }
+      resultat += `${duree.minutes} minute${duree.minutes > 1 ? 's' : ''}`;
+      return resultat;
+    }
+
+    // Mettre à jour la date cible lors du clic sur le bouton
+    function updateDateCible() {
+      const dateCibleInput = document.getElementById('dateCibleInput');
+      const nouvelleDateCible = dateCibleInput.value;
+      const duree = calculerDifferenceDate(nouvelleDateCible);
+      const resultat = formaterDuree(duree);
+      document.getElementById('resultat').innerHTML = `Temps restant jusqu'à la date cible : ${resultat}`;
+    }
+  </script>
+</body>
+</html>
