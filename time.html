@@ -4,6 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calcul de durée</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="datetime-local"] {
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #resultat {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    #resultat span {
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
   <h1>Calcul de durée jusqu'à la date cible</h1>
@@ -57,12 +106,23 @@
       const nouvelleDateCible = dateCibleInput.value;
       const duree = calculerDifferenceDate(nouvelleDateCible);
       const resultat = formaterDuree(duree);
-      document.getElementById('resultat').innerHTML = `Temps restant jusqu'à la date cible : ${resultat}`;
+      document.getElementById('resultat').innerHTML = `Temps restant jusqu'à la date cible : <span onclick="copierDuree('${resultat}')">${resultat}</span>`;
 
       // Mettre à jour l'URL avec la nouvelle date cible
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.set('date', nouvelleDateCible);
       window.history.replaceState({}, '', `${window.location.pathname}?${urlParams}`);
+    }
+
+    // Fonction pour copier la durée au clic
+    function copierDuree(duree) {
+      const textarea = document.createElement('textarea');
+      textarea.value = duree;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Durée copiée : ' + duree);
     }
   </script>
 </body>
