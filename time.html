@@ -6,19 +6,23 @@
   <title>Calcul de durée</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: #f5f5f5;
+      background-color: #f0f0f0;
+      color: #333;
     }
 
     h1 {
       margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #444;
     }
 
     label {
@@ -27,12 +31,18 @@
 
     input[type="datetime-local"] {
       margin-bottom: 10px;
+      width: 70%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      outline: none;
     }
 
     button {
       padding: 10px 20px;
-      background-color: #4caf50;
-      color: white;
+      background-color: #444;
+      color: #fff;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -40,28 +50,43 @@
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #333;
     }
 
     #resultat {
-      margin-top: 20px;
       font-size: 18px;
+      color: #666;
     }
 
     #resultat span {
       cursor: pointer;
       user-select: none;
     }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(50, 50, 50, 0.8);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1>Calcul de durée jusqu'à la date cible</h1>
+  <h1>Calcul de durée</h1>
 
-  <label for="dateCibleInput">Date cible :</label>
+  <label for="dateCibleInput">La date :</label>
   <input type="datetime-local" id="dateCibleInput">
-  <button onclick="updateDateCible()">Mettre à jour</button>
+  <button onclick="updateDateCible()" style="margin-bottom: 50pt;">Mettre à jour</button>
 
+  <label>On se voit dans...</label>
   <div id="resultat"></div>
+  <button onclick="copyDuration()" id="copyButton" style="display: none; margin-top: 10px;">Copier</button>
+  <div class="notification" id="notification">Copié</div>
   
   <script>
     // Fonction pour calculer la différence de temps entre deux dates
@@ -106,7 +131,8 @@
       const nouvelleDateCible = dateCibleInput.value;
       const duree = calculerDifferenceDate(nouvelleDateCible);
       const resultat = formaterDuree(duree);
-      document.getElementById('resultat').innerHTML = `Temps restant jusqu'à la date cible : <span onclick="copierDuree('${resultat}')">${resultat}</span>`;
+      document.getElementById('resultat').innerHTML = `<span onclick="copierDuree('${resultat}')">${resultat}</span>`;
+      document.getElementById('copyButton').style.display = 'block';
 
       // Mettre à jour l'URL avec la nouvelle date cible
       const urlParams = new URLSearchParams(window.location.search);
@@ -115,14 +141,18 @@
     }
 
     // Fonction pour copier la durée au clic
-    function copierDuree(duree) {
+    function copyDuration() {
+      const resultat = document.getElementById('resultat').querySelector('span').textContent;
       const textarea = document.createElement('textarea');
-      textarea.value = duree;
+      textarea.value = resultat;
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      alert('Durée copiée : ' + duree);
+      document.getElementById('notification').style.display = 'block';
+      setTimeout(function() {
+        document.getElementById('notification').style.display = 'none';
+      }, 2000);
     }
   </script>
 </body>
