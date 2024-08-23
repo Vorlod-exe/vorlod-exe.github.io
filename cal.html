@@ -29,9 +29,8 @@
         function updateSigninStatus(isSignedIn) {
             gapi.client.calendar.calendarList.insert({
                 resource: {
-                    id: CALENDAR_URL,
-                    summary: 'Mon Agenda',
-                    description: 'Agenda ajouté via l\'API',
+                    id: '"https://ade-uga-ro-vs.grenet.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=32185&projectId=3&calType=ical&firstDate=2024-08-05&lastDate=2025-08-01',
+                    summary: 'Planning H',
                     timeZone: 'Europe/Paris'
                 }
             }).then(response => {
