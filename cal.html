@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter à Google Calendar</title>
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+  <div id="g_id_onload"
+     data-client_id="     412760379329-r84ipopu7ngepgn7l66obo8djkj1rant.apps.googleusercontent.com "
+     data-context="use"
+     data-ux_mode="popup"
+     data-callback="updateSigninStatus"
+     data-auto_select="true"
+     data-itp_support="true">
+</div>
+
+<div class="g_id_signin"
+     data-type="standard"
+     data-shape="pill"
+     data-theme="outline"
+     data-text="continue_with"
+     data-size="large"
+     data-logo_alignment="left">
+</div>
+<script>
+        function updateSigninStatus(isSignedIn) {
+            gapi.client.calendar.calendarList.insert({
+                resource: {
+                    id: CALENDAR_URL,
+                    summary: 'Mon Agenda',
+                    description: 'Agenda ajouté via l\'API',
+                    timeZone: 'Europe/Paris'
+                }
+            }).then(response => {
+                alert("Agenda ajouté avec succès!");
+            }).catch(error => {
+                console.error("Erreur lors de l'ajout de l'agenda: ", error);
+                alert("Erreur lors de l'ajout de l'agenda.");
+            });
+        }
+
+        handleClientLoad();
+    </script>
+</body>
+</html>
